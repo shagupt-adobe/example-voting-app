@@ -50,7 +50,7 @@ pipeline {
             echo 'Packaging vote app with docker'
             script{
               docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
-                  def voteImage = docker.build("shankyrox/vote:v-adb-${env.BUILD_ID}", "./vote")
+                  def voteImage = docker.build("schoolofdevops/vote:v-adb-${env.BUILD_ID}", "./vote")
                   voteImage.push()
                   voteImage.push("latest")
               }
@@ -73,8 +73,6 @@ pipeline {
     always{
         echo 'Pipeline for vote is complete..'
     }
- 
   }
-
 }
 
